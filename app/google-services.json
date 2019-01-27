@@ -1,0 +1,99 @@
+{
+  "project_info": {
+    "project_number": "1034903387179",
+    "firebase_url": "https://myapplication-7eeda.firebaseio.com",
+    "project_id": "myapplication-7eeda",
+    "storage_bucket": "myapplication-7eeda.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034903387179:android:39e564b3b732db76",
+        "android_client_info": {
+          "package_name": "com.gmail.buckleyniall100.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034903387179-r579r4e6fpc7llv6mdrdsg1jid56i9pk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.buckleyniall100.myapplication",
+            "certificate_hash": "bfbef22a17ea6e564c1abbdf684f0d93a2e36251"
+          }
+        },
+        {
+          "client_id": "1034903387179-rvdriop42iqm8k0cb8nf402nl098g2m1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCJQ7ac3PIxR6K8FD2WGAiSO4Iqnz3zpU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034903387179-rvdriop42iqm8k0cb8nf402nl098g2m1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1034903387179:android:44d3a93c5e18ab59",
+        "android_client_info": {
+          "package_name": "com.gmail.buckleyniall100.readwritefirebase"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1034903387179-2vevgvmqdkl6atuj6rlatafesq37dssk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gmail.buckleyniall100.readwritefirebase",
+            "certificate_hash": "bfbef22a17ea6e564c1abbdf684f0d93a2e36251"
+          }
+        },
+        {
+          "client_id": "1034903387179-rvdriop42iqm8k0cb8nf402nl098g2m1.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCCJQ7ac3PIxR6K8FD2WGAiSO4Iqnz3zpU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1034903387179-rvdriop42iqm8k0cb8nf402nl098g2m1.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

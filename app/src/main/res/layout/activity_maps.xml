@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+android:id="@+id/relativeLayoutFragment"
+android:layout_width="match_parent"
+android:layout_height="fill_parent" >
+<!-- Location -->
+
+
+<fragment
+    android:id="@+id/map"
+    android:name="com.google.android.gms.maps.SupportMapFragment"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent" />
+
+    <!-- ListRow Left sied Thumbnail image -->
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="15dip"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:hint="Fetched Text Here!"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_horizontal"
+        android:layout_centerInParent="true"
+        android:text="Start Journey"
+        android:padding="10dp"
+        android:layout_marginTop="200dp"
+        android:paddingRight="100dp"
+        android:onClick="startButtonClicked"/>
+
+    <Button
+        android:id="@+id/finish"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="top|center_horizontal"
+        android:layout_centerInParent="true"
+        android:text="Finish Journey"
+        android:padding="10dp"
+        android:layout_marginTop="200dp"
+        android:paddingRight="100dp"
+        android:onClick="finishButtonClicked"/>
+
+</RelativeLayout>
