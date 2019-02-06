@@ -25,8 +25,10 @@ public class SafetyCheck {
         System.out.println("speedLimit: " + speedLimit);
         System.out.println("speedLimit: " + maxSpeed);
         System.out.println("driverSpeed: " + driverSpeed);
-        if(maxSpeed < driverSpeed){
-            jsonFile.writeToJson(current);
+        //if(maxSpeed < driverSpeed)
+        if(maxSpeed > -1){
+            System.out.println("REAL ADDRESS " + fetchData.getAddress());
+            jsonFile.writeToJson(fetchData.getAddress());
         }
         //jsonFile.getObj();
         System.out.println(jsonFile.getObj());

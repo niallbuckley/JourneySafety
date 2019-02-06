@@ -26,8 +26,9 @@ public class jsonData {
         return jsonObj;
     }
 
-    public void writeToJson(LatLng current ){
+    public void writeToJson(String current ){
         list.put(current);
+        //replace with address.
 
         try {
             jsonObj.put("Error", list);

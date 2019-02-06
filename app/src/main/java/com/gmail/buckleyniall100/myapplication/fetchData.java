@@ -1,39 +1,27 @@
 package com.gmail.buckleyniall100.myapplication;
 
 import android.os.AsyncTask;
-import android.provider.DocumentsContract;
-
-import com.gmail.buckleyniall100.myapplication.MapsActivity;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.w3c.dom.Document;
-import org.w3c.dom.NodeList;
-import org.xml.sax.InputSource;
-import org.xml.sax.SAXException;
 
-import java.io.BufferedInputStream;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.io.PushbackInputStream;
-import java.io.StringReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import javax.xml.parsers.DocumentBuilder;
-import javax.xml.parsers.DocumentBuilderFactory;
-import javax.xml.parsers.ParserConfigurationException;
-
 public class fetchData extends AsyncTask<Void, Void, Void> {
+    private static String address;
     private final double lat;
     private final double lon;
     String data = "";
     String osmId = "";
+    //String address = "";
     String roadData = "";
     String maxSpeed = "";
 
@@ -60,6 +48,9 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
             try {
                 JSONObject jsonData = new JSONObject(data);
                 osmId = (String) jsonData.get("osm_id");
+                address = (String) jsonData.get("display_name");
+                System.out.println("ADDRESS: "+ address);
+                setAddress(address);
                 getSpeedLimit(osmId);
                 //getMaxSpeed max = new getMaxSpeed(osmId);
 
@@ -74,6 +65,13 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
         }
 
         return null;
+    }
+
+    private void setAddress(String address) {
+        this.address = address;
+    }
+    public static String getAddress(){
+        return address;
     }
 
     @Override

@@ -61,11 +61,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public static Button finishButton;
     boolean startButtonPressed = false;
     boolean finishButtonPressed = false;
-    //private FirebaseUser mCurrentUser;
+    private FirebaseUser mCurrentUser;
     //private userId = firebase.auth().currentUser.uid;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-    private FirebaseDatabase firebaseDatabase = FirebaseDatabase.getInstance();
-    private DatabaseReference mDatabase = firebaseDatabase.getReference("users");
+    private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    //private DatabaseReference mDatabase = firebaseDatabase.getReference("users");
+
     //String email = user.getEmail();
 
 
@@ -75,6 +76,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        System.out.println("User ID: " + user.getUid());
+        final String userId = user.getUid();
         final jsonData jsonFile = new jsonData();
 
         data =  (TextView) findViewById(R.id.title);
@@ -116,25 +119,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     new SafetyCheck(speed, data, current, jsonFile);
                 }
                 else if(finishButtonPressed){
-                    System.out.println(jsonFile.getObj());
+                    DatabaseReference myRef = database.getReference("users/" + userId);
+                    Date finishDate = new Date();
                     JSONObject p = jsonFile.getObj();
-
-                    try {
-                        JSONArray array = p.getJSONArray("Error");
-                        LatLng object = (LatLng) array.get(1);
-                        System.out.println("LAT: " + object.latitude);
-                        Date loudScreaming = (Date) p.get("Date/ Time");
-                        System.out.println(loudScreaming);
-                        /*mDatabaseRef = FirebaseDatabase.getInstance().getReference();
-                        Map<String, JourneyDetails> users = new HashMap<>();
-                        users.put(String.valueOf(user), new JourneyDetails(1, loudScreaming));*/
+                    /*try {
+                        p.put("End Date/ Time", date);
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
-                    //String userId = "123456";
-                    //JourneyDetails c  = new JourneyDetails(1, "Hiya");
-                    //mDatabase.child("users").setValue(c);
-                    mDatabase.setValue("Hello, World!");
+                    System.out.println("JSON file final= " + p);*/
+                    try {
+                        JSONArray array = p.getJSONArray("Error");
+                        int numMistakes = array.length();
+                        Date startDate = (Date) p.get("Date/ Time");
+                        int overAllScore = calculateScore(numMistakes, startDate, finishDate);
+                        User user = new User(overAllScore, startDate, finishDate);
+                        myRef.push().setValue(user);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                    //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
+                    finishButtonPressed = false;
+                    startButtonPressed = false;
+                    journeyFinished(p);
                 }
                 //mMap.addMarker(new MarkerOptions().position(latLng).title("current loc"));
                 //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -167,6 +174,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    private void journeyFinished(JSONObject p) {
+        System.out.println("YELLOWW "  + p);
+    }
+
     public void finishButtonClicked(View v){
         finishButtonPressed = true;
         finishButton.setVisibility(View.INVISIBLE);
@@ -176,6 +187,42 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         startButton.setVisibility(View.INVISIBLE);
         startButtonPressed = true;
         finishButton.setVisibility(View.VISIBLE);
+    }
+
+    private int calculateScore(int errors, Date startDate, Date endDate){
+        if(errors == 0){
+            return 10;
+        }
+        double diffInMins = (double)( (endDate.getTime() - startDate.getTime())
+                / (1000 * 60) );
+        if( errors / (diffInMins/60) > 0 &&  errors / ((diffInMins/60)) <= 1 ){
+            return 9;
+        }
+        else if ( errors / (diffInMins/60) > 1 &&  errors / ((diffInMins/60)) <= 2 ){
+            return 8;
+        }
+        else if ( errors / (diffInMins/60) > 2 &&  errors / ((diffInMins/60)) <= 3 ){
+            return 7;
+        }
+        else if ( errors / (diffInMins/60) > 3 &&  errors / ((diffInMins/60)) <= 4 ){
+            return 6;
+        }
+        else if ( errors / (diffInMins/60) > 4 &&  errors / ((diffInMins/60)) <= 5 ){
+            return 5;
+        }
+        else if ( errors / (diffInMins/60) > 5 &&  errors / ((diffInMins/60)) <= 6 ){
+            return 4;
+        }
+        else if ( errors / (diffInMins/60) > 6 &&  errors / ((diffInMins/60)) <= 7 ){
+            return 3;
+        }
+        else if ( errors / (diffInMins/60) > 7 &&  errors / ((diffInMins/60)) <= 8 ){
+            return 2;
+        }
+        else if (((diffInMins/60)) <= 7 ){
+            return 1;
+        }
+        return 0;
     }
 
 
