@@ -17,16 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box1"
-        android:text = "First Rule"
-        android:textSize = "24sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_toRightOf="@+id/check_box2"
-        android:layout_below="@+id/rule1"
-        android:text = "Second Rule"
+        android:text = "No leaks under vehicle."
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -37,11 +28,124 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/check_box1"/>
 
+    <TextView
+        android:id="@+id/rule2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box2"
+        android:layout_below="@+id/rule1"
+        android:text = "Vehicle sitting square and not leaning to one side."
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/check_box3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule2"/>
+
+    <TextView
+        android:id="@+id/rule3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box3"
+        android:layout_below="@+id/rule2"
+        android:text = "Wheels in good condition and secure, wheelnuts tight."
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/check_box4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule3"/>
+
+    <TextView
+        android:id="@+id/rule4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box4"
+        android:layout_below="@+id/rule3"
+        android:text = "Tyres undamaged with correct inflation and tread depth"
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/check_box5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule4"/>
+
+    <TextView
+        android:id="@+id/rule5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box5"
+        android:layout_below="@+id/rule4"
+        android:text = "Good visibility for driver through all windows and mirrors."
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+
+    <CheckBox
+        android:id="@+id/check_box6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule5"/>
+
+    <TextView
+        android:id="@+id/rule6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box6"
+        android:layout_below="@+id/rule5"
+        android:text = "Engine oil, water/coolant, windscreen washer reservoir and fuel levels"
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/check_box7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule6"/>
+
+    <TextView
+        android:id="@+id/rule7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box7"
+        android:layout_below="@+id/rule6"
+        android:text = "Fuel cap in place and exhaust secure with no excessive noise or smoke."
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
+    <CheckBox
+        android:id="@+id/check_box8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@+id/rule7"/>
+
+    <TextView
+        android:id="@+id/rule8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/check_box8"
+        android:layout_below="@+id/rule7"
+        android:text = "Tax, insurance and NCT/MOT discs present and valid."
+        android:textSize = "24sp"
+        android:textStyle="bold"/>
+
     <Button
         android:id="@+id/the_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Centered Button"
+        android:text="Continue"
         android:layout_alignParentBottom="true" />
 
 </RelativeLayout>

@@ -26,12 +26,24 @@ public class jsonData {
         return jsonObj;
     }
 
+
+    //write the errors to json file
     public void writeToJson(String current ){
         list.put(current);
         //replace with address.
 
         try {
             jsonObj.put("Error", list);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void writeMetaToJson(int ticked, int hoursSlept, int hoursSinceSlept){
+        try {
+            jsonObj.put("numTicked", ticked);
+            jsonObj.put("hoursSlept", hoursSlept);
+            jsonObj.put("hoursSinceSlept", hoursSinceSlept);
         } catch (JSONException e) {
             e.printStackTrace();
         }

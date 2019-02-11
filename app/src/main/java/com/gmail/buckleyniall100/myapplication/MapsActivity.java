@@ -65,6 +65,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     //private userId = firebase.auth().currentUser.uid;
     FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
     private FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private int ticked;
+    private int hoursSlept;
+    private int hoursSinceSlept;
     //private DatabaseReference mDatabase = firebaseDatabase.getReference("users");
 
     //String email = user.getEmail();
@@ -76,9 +79,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        Bundle extras = getIntent().getExtras();
+        if (extras != null) {
+            ticked = extras.getInt("numTicked");
+            hoursSlept = extras.getInt("hoursSlept");
+            hoursSinceSlept = extras.getInt("hoursSinceSlept");
+            //The key argument here must match that used in the other activity
+        }
+        System.out.println("Ticked: " + ticked);
+        System.out.println("Hours Slept: " + hoursSlept);
+        System.out.println("Hours since sleep: " + hoursSinceSlept);
+        //double ps = new predictScore().predictScore(ticked, hoursSlept, hoursSinceSlept);
+        new predictScore().predictScore(1, 2, 3);
+        //System.out.println("PREDICTED==== " + ps);
+
         System.out.println("User ID: " + user.getUid());
-        final String userId = user.getUid();
+        //final String userId = user.getUid();
+        final String userId = "userTest";
         final jsonData jsonFile = new jsonData();
+        jsonFile.writeMetaToJson(ticked, hoursSlept, hoursSinceSlept);
+
 
         data =  (TextView) findViewById(R.id.title);
         startButton = (Button) findViewById(R.id.start);
@@ -132,8 +152,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         JSONArray array = p.getJSONArray("Error");
                         int numMistakes = array.length();
                         Date startDate = (Date) p.get("Date/ Time");
+                        int ticked = (int) p.get("numTicked");
+                        int hoursSlept = (int) p.get("hoursSlept");
+                        int hoursSinceSlept = (int) p.get("hoursSinceSlept");
                         int overAllScore = calculateScore(numMistakes, startDate, finishDate);
-                        User user = new User(overAllScore, startDate, finishDate);
+                        User user = new User(overAllScore, startDate, finishDate, ticked, hoursSlept, hoursSinceSlept);
+                        System.out.println("Hello??");
                         myRef.push().setValue(user);
                     } catch (JSONException e) {
                         e.printStackTrace();
