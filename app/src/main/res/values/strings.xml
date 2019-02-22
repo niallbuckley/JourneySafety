@@ -14,6 +14,14 @@
     <string name="error_invalid_password">This password is too short</string>
     <string name="error_incorrect_password">This password is incorrect</string>
     <string name="error_field_required">This field is required</string>
+    <string name="checkBox1">No leaks under vehicle.</string>
+    <string name="checkBox2">Vehicle sitting square and not leaning to one side.</string>
+    <string name="checkBox3">Wheels in good condition, secure and wheelnuts tight.</string>
+    <string name="checkBox4">Tyres undamaged with correct inflation and tread depth.</string>
+    <string name="checkBox5">Good visibility for driver through all windows and mirrors.</string>
+    <string name="checkBox6">Engine oil, water/coolant, windscreen washer reservoir and fuel levels</string>
+    <string name="checkBox7">Fuel cap in place and exhaust secure with no excessive noise or smoke.</string>
+    <string name="checkBox8">Tax, insurance and NCT/MOT discs present and valid.</string>
     <string name="permission_rationale">"Contacts permissions are needed for providing email
         completions."
     </string>

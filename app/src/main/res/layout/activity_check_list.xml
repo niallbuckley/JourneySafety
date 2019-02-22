@@ -17,7 +17,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box1"
-        android:text = "No leaks under vehicle."
+        android:text = "@string/checkBox1"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -34,7 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box2"
         android:layout_below="@+id/rule1"
-        android:text = "Vehicle sitting square and not leaning to one side."
+        android:text = "@string/checkBox2"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -51,7 +51,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box3"
         android:layout_below="@+id/rule2"
-        android:text = "Wheels in good condition and secure, wheelnuts tight."
+        android:text = "@string/checkBox3"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -68,7 +68,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box4"
         android:layout_below="@+id/rule3"
-        android:text = "Tyres undamaged with correct inflation and tread depth"
+        android:text = "@string/checkBox4"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -85,7 +85,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box5"
         android:layout_below="@+id/rule4"
-        android:text = "Good visibility for driver through all windows and mirrors."
+        android:text = "@string/checkBox5"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -103,7 +103,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box6"
         android:layout_below="@+id/rule5"
-        android:text = "Engine oil, water/coolant, windscreen washer reservoir and fuel levels"
+        android:text = "@string/checkBox6"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -120,7 +120,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box7"
         android:layout_below="@+id/rule6"
-        android:text = "Fuel cap in place and exhaust secure with no excessive noise or smoke."
+        android:text = "@string/checkBox7"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 
@@ -137,7 +137,7 @@
         android:layout_height="wrap_content"
         android:layout_toRightOf="@+id/check_box8"
         android:layout_below="@+id/rule7"
-        android:text = "Tax, insurance and NCT/MOT discs present and valid."
+        android:text = "@string/checkBox8"
         android:textSize = "24sp"
         android:textStyle="bold"/>
 

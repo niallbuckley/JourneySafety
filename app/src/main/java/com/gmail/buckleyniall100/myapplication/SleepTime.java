@@ -36,17 +36,27 @@ public class SleepTime extends AppCompatActivity implements View.OnClickListener
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.the_button:
-                int intHoursSlept = Integer.parseInt(hoursSlept.getText().toString());
-                int intHoursSinceSlept = Integer.parseInt(hoursSinceSlept.getText().toString());
-                Intent intent = new Intent(this, MapsActivity.class);
-                Bundle extras = new Bundle();
-                extras.putInt("numTicked",ticked);
-                extras.putInt("hoursSlept", intHoursSlept);
-                extras.putInt("hoursSinceSlept", intHoursSinceSlept);
-                intent.putExtras(extras);
-                startActivity(intent);
+                userSleepTime();
                 //startActivity(new Intent(this, MapsActivity.class));
                 break;
         }
+    }
+
+    private void userSleepTime() {
+        int intHoursSlept = Integer.parseInt(hoursSlept.getText().toString());
+        int intHoursSinceSlept = Integer.parseInt(hoursSinceSlept.getText().toString());
+        if(intHoursSlept > 24){
+
+        }
+        if(intHoursSinceSlept > 24){
+
+        }
+        Intent intent = new Intent(this, MapsActivity.class);
+        Bundle extras = new Bundle();
+        extras.putInt("numTicked",ticked);
+        extras.putInt("hoursSlept", intHoursSlept);
+        extras.putInt("hoursSinceSlept", intHoursSinceSlept);
+        intent.putExtras(extras);
+        startActivity(intent);
     }
 }

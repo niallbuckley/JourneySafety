@@ -1,6 +1,8 @@
 package com.gmail.buckleyniall100.myapplication;
 
 import android.Manifest;
+import android.content.Context;
+import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.location.Location;
 import android.location.LocationListener;
@@ -57,6 +59,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     LocationListener locationListener;
     String charset = "UTF-8";
     public static TextView data;
+    public static TextView predictedData;
     public static Button startButton;
     public static Button finishButton;
     boolean startButtonPressed = false;
@@ -79,6 +82,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_maps);
 
+        predictedData = (TextView) findViewById(R.id.predicted_score);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ticked = extras.getInt("numTicked");
@@ -90,8 +94,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         System.out.println("Hours Slept: " + hoursSlept);
         System.out.println("Hours since sleep: " + hoursSinceSlept);
         //double ps = new predictScore().predictScore(ticked, hoursSlept, hoursSinceSlept);
-        new predictScore().predictScore(1, 2, 3);
-        //System.out.println("PREDICTED==== " + ps);
+        predictScore ps = new predictScore(1, 2, 3);
+        ps.setUpData();
 
         System.out.println("User ID: " + user.getUid());
         //final String userId = user.getUid();
@@ -142,6 +146,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     DatabaseReference myRef = database.getReference("users/" + userId);
                     Date finishDate = new Date();
                     JSONObject p = jsonFile.getObj();
+                    locationManager.removeUpdates(locationListener);
+                    locationManager = null;
                     /*try {
                         p.put("End Date/ Time", date);
                     } catch (JSONException e) {
@@ -165,6 +171,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     //FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser();
                     finishButtonPressed = false;
                     startButtonPressed = false;
+
                     journeyFinished(p);
                 }
                 //mMap.addMarker(new MarkerOptions().position(latLng).title("current loc"));
@@ -200,6 +207,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void journeyFinished(JSONObject p) {
         System.out.println("YELLOWW "  + p);
+        Intent intent = new Intent(MapsActivity.this, fileDownload.class);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+        intent.putExtra("journeyDetails", p.toString());
+        startActivity(intent);
     }
 
     public void finishButtonClicked(View v){
@@ -247,6 +258,10 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             return 1;
         }
         return 0;
+    }
+
+    public TextView getPredictedData(){
+        return predictedData;
     }
 
 

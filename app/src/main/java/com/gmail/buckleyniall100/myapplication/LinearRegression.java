@@ -16,8 +16,8 @@ public class LinearRegression {
         //estimate = x.multiply(w);
         System.out.println("Estimate == " + w);
     }
-    public double estimateRent(){
-        return MatrixUtils.createColumnRealMatrix(new double[]{1, Double.valueOf("500"), Double.valueOf("4")}).transpose().multiply(w).getData()[0][0];
+    public double estimateRent(double hoursSlept, double hoursSinceSlept, double ticked){
+        return MatrixUtils.createColumnRealMatrix(new double[]{1, hoursSlept, hoursSinceSlept, ticked}).transpose().multiply(w).getData()[0][0];
     }
 
     public RealMatrix getW(){return w;}

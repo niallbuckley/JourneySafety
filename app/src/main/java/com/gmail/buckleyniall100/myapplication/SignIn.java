@@ -82,10 +82,14 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if (task.isSuccessful()){
                      System.out.println("Success!!");
-                     Intent intent = new Intent(SignIn.this, MapsActivity.class);
+                     Intent intent = new Intent(SignIn.this, MainMenu.class);
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      startActivity(intent);
-                }//else{}
+                     finish();
+                }else {
+                    password.setError("E-mail or password incorrect");
+                    email.setError("E-mail or password incorrect");
+                }
             }
         });
 

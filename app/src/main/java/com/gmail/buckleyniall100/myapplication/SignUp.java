@@ -1,5 +1,6 @@
 package com.gmail.buckleyniall100.myapplication;
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -15,7 +16,7 @@ import com.google.firebase.auth.FirebaseAuth;
 
 public class SignUp extends AppCompatActivity implements View.OnClickListener {
     Button button;
-    EditText email, password1;
+    EditText email, password1, password2;
     private FirebaseAuth mAuth;
 
     @Override
@@ -31,6 +32,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
 
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
+        password2 = findViewById(R.id.password2);
     }
 
     @Override
@@ -44,6 +46,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     private void registerUser() {
         String username = email.getText().toString().trim();
         String password = password1.getText().toString().trim();
+        String confirmPassword = password2.getText().toString().trim();
 
         if(password.isEmpty()){
             password1.setError("Password is required");
@@ -65,11 +68,21 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             password1.requestFocus();
             return;
         }
+        if(password != confirmPassword){
+            password1.setError("Passwords don't match!");
+            password2.setError("Passwords don't match!");
+            return;
+        }
         mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
                 if(task.isSuccessful()){
                     System.out.println("good lad");
+                    Intent intent = new Intent(SignUp.this, MainMenu.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                    startActivity(intent);
+                    finish();
+
                 }
                 //else{} email alreay taken (in video)
             }

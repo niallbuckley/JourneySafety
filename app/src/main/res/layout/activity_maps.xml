@@ -24,6 +24,16 @@ android:layout_height="fill_parent" >
         android:typeface="sans"
         android:hint="Fetched Text Here!"/>
 
+    <TextView
+        android:id="@+id/predicted_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:hint="Predeicted score"/>
+
     <Button
         android:id="@+id/start"
         android:layout_width="wrap_content"
