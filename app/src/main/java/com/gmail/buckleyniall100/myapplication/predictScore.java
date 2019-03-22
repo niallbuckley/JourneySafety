@@ -95,7 +95,7 @@ public class predictScore {
         System.out.println("ticked= "+ticked + " "+hourSlept + " " + hoursSinceSlept);
         predicted = lr.estimateRent(hourSlept, hoursSinceSlept, ticked);
         System.out.println("Estimated rent: " + predicted);
-        MapsActivity.predictedData.setText(String.valueOf((int) this.predicted));
+        MapsActivity.predictedData.append(String.valueOf((int) this.predicted));
         //MapsActivity obj = new MapsActivity();
         //TextView tv = obj.getPredictedData();
         //tv.setText("Hello");

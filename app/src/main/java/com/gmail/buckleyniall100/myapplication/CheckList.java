@@ -8,6 +8,17 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
+
 public class CheckList extends AppCompatActivity implements View.OnClickListener {
 
     private CheckBox checkBox1;
@@ -18,6 +29,7 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
     private CheckBox checkBox6;
     private CheckBox checkBox7;
     private CheckBox checkBox8;
+    String data = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +39,8 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
         Button continueButton = (Button) findViewById(R.id.the_button);
         continueButton.setOnClickListener(CheckList.this);
 
+        FetchWeather weather = new FetchWeather();
+        weather.execute();
         checkBox1 = (CheckBox) findViewById(R.id.check_box1);
         checkBox2 = (CheckBox) findViewById(R.id.check_box2);
         checkBox3 = (CheckBox) findViewById(R.id.check_box3);
@@ -48,8 +62,8 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
                 startActivity(i);
                 //startActivity(new Intent(this, SleepTime.class));
                 break;
+        }
     }
-}
 
     private int getNumberTicked() {
         int count = 0;

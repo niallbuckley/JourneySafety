@@ -119,7 +119,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             ActivityCompat.requestPermissions(this, new String[]
                     {Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_LOCATION_PERMISSION);
         }
-
         //check if network provider is enabled
         locationListener = new LocationListener() {
             @Override
@@ -142,7 +141,8 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     process.execute();
                     new SafetyCheck(speed, data, current, jsonFile);
                 }
-                else if(finishButtonPressed){
+                else if(finishButtonPressed) {
+                    int overAllScore = 0;
                     DatabaseReference myRef = database.getReference("users/" + userId);
                     Date finishDate = new Date();
                     JSONObject p = jsonFile.getObj();
@@ -161,7 +161,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                         int ticked = (int) p.get("numTicked");
                         int hoursSlept = (int) p.get("hoursSlept");
                         int hoursSinceSlept = (int) p.get("hoursSinceSlept");
-                        int overAllScore = calculateScore(numMistakes, startDate, finishDate);
+                        overAllScore = calculateScore(numMistakes, startDate, finishDate);
                         User user = new User(overAllScore, startDate, finishDate, ticked, hoursSlept, hoursSinceSlept);
                         System.out.println("Hello??");
                         myRef.push().setValue(user);
@@ -172,7 +172,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     finishButtonPressed = false;
                     startButtonPressed = false;
 
-                    journeyFinished(p);
+                    journeyFinished(p, overAllScore);
                 }
                 //mMap.addMarker(new MarkerOptions().position(latLng).title("current loc"));
                 //mMap.moveCamera(CameraUpdateFactory.newLatLng(latLng));
@@ -205,11 +205,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
-    private void journeyFinished(JSONObject p) {
+    private void journeyFinished(JSONObject p, int allScore) {
         System.out.println("YELLOWW "  + p);
+        System.out.println("Predict Score " + predictedData.getText().toString());
         Intent intent = new Intent(MapsActivity.this, fileDownload.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("journeyDetails", p.toString());
+        intent.putExtra("predictedScore", predictedData.getText().toString());
+        intent.putExtra("journeyScore", String.valueOf(allScore));
         startActivity(intent);
     }
 

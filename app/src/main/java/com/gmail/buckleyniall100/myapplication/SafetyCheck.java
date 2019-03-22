@@ -29,7 +29,10 @@ public class SafetyCheck {
         // + " ---- Reason: Speeding"
         if(maxSpeed > -1){
             System.out.println("REAL ADDRESS " + fetchData.getAddress());
+            //if previous != fetchData.getAddress() {
             jsonFile.writeToJson(fetchData.getAddress() + " ---- Reason: Speeding");
+            //}
+            //previous = fetchData.getAddress();
         }
 
         //jsonFile.getObj();

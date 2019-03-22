@@ -57,7 +57,6 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
             } catch (JSONException e) {
                 e.printStackTrace();
             }
-
         } catch (MalformedURLException e) {
             e.printStackTrace();
         } catch (IOException e) {

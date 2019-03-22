@@ -18,11 +18,15 @@ android:layout_height="fill_parent" >
         android:id="@+id/title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="5dip"
+        android:layout_marginRight="5dip"
         android:textColor="#040404"
-        android:textSize="15dip"
+        android:textSize="30dip"
         android:textStyle="bold"
         android:typeface="sans"
-        android:hint="Fetched Text Here!"/>
+        android:background="@drawable/speedlimit_design"/>
 
     <TextView
         android:id="@+id/predicted_score"
@@ -32,30 +36,23 @@ android:layout_height="fill_parent" >
         android:textSize="20dip"
         android:textStyle="bold"
         android:typeface="sans"
-        android:hint="Predeicted score"/>
-
-    <Button
-        android:id="@+id/start"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="top|center_horizontal"
-        android:layout_centerInParent="true"
-        android:text="Start Journey"
-        android:padding="10dp"
-        android:layout_marginTop="200dp"
-        android:paddingRight="100dp"
-        android:onClick="startButtonClicked"/>
+        android:text="Your Predicted Score: "/>
 
     <Button
         android:id="@+id/finish"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:gravity="top|center_horizontal"
-        android:layout_centerInParent="true"
         android:text="Finish Journey"
-        android:padding="10dp"
-        android:layout_marginTop="200dp"
-        android:paddingRight="100dp"
+        android:layout_alignParentBottom="true"
         android:onClick="finishButtonClicked"/>
+
+    <Button
+        android:id="@+id/start"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Start Journey"
+        android:padding="10dp"
+        android:layout_alignParentBottom="true"
+        android:onClick="startButtonClicked"/>
 
 </RelativeLayout>

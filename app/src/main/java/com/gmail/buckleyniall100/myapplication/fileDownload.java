@@ -31,7 +31,14 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_file_download);
 
-        fileText = findViewById(R.id.edit_text);
+        TextView scoreText = findViewById(R.id.text1);
+        TextView predictText = findViewById(R.id.text2);
+        String predictedScore = getIntent().getStringExtra("predictedScore");
+        String journeyScore = getIntent().getStringExtra("journeyScore");
+
+        scoreText.append(journeyScore);
+        predictText.append(predictedScore);
+
         Button saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener((View.OnClickListener) fileDownload.this);
         try {
@@ -53,7 +60,7 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             case R.id.save_button:
                 try {
                     save();
-                    //load();
+                    load();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
@@ -69,7 +76,7 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             //On date d/m/y After x sleep and y hours between sleep you made l errors:
             for (int i = 1; i < jsonObj.getJSONArray("Error").length(); i++) {
-                String strJson = Integer.toString(i + 1) + ". " + array.getString(i) + "\n";
+                String strJson = Integer.toString(i+1) + ". " + array.getString(i) + "\n";
 
                 System.out.println(array.getString(i));
                 //String strJson = Integer.toString(i + 1);
@@ -92,11 +99,12 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             }
         }
 
+
     }
-}
-    /*
+
     public void load() throws JSONException {
         FileInputStream fis = null;
+        TextView fileText = findViewById(R.id.predicted_score);
         final String FILE_NAME = "Mistakes: " + jsonObj.get("Date/ Time") + ".txt";
         try {
             fis = openFileInput(FILE_NAME);
@@ -105,10 +113,11 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             StringBuilder sb = new StringBuilder();
             String text;
 
-            while ((text = br.readLine()) != null) {
-                sb.append(text).append("\n");
+                while ((text = br.readLine()) != null) {
+                    System.out.println("SB "+ sb);
+                    sb.append(text).append("\n");
             }
-
+            System.out.println("SB2 " + sb);
             fileText.setText(sb.toString());
 
         } catch (FileNotFoundException e) {
@@ -125,5 +134,6 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             }
         }
 
-    }*/
+    }
+}
 
