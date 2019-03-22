@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">journeyPrediction</string>
+    <string name="app_name">DriverMonitor</string>
 
 
     <string name="title_start">Start</string>
@@ -41,4 +41,5 @@
     </string-array>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="start_fragment_info">Tap Start before you begin driving!</string>
 </resources>

@@ -40,19 +40,19 @@
 
         <activity
             android:name=".MainActivity"
-            android:label="@string/title_activity_SignIn">
+            android:label="@string/app_name">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainMenu" />
-        <activity android:name=".SignUp" />
-        <activity android:name=".SignIn" />
-        <activity android:name=".SleepTime" />
-        <activity android:name=".MapsActivity" />
-        <activity android:name=".fileDownload" />
+        <activity android:name=".MainMenu"  />
+        <activity android:name=".SignUp" android:label="@string/action_sign_up"/>
+        <activity android:name=".SignIn" android:label="@string/action_sign_in"/>
+        <activity android:name=".SleepTime" android:label="@string/app_name" />
+        <activity android:name=".MapsActivity" android:label="@string/app_name" />
+        <activity android:name=".fileDownload" android:label="@string/app_name"/>
         <activity
             android:name=".CheckList"
             android:label="@string/app_name"></activity>

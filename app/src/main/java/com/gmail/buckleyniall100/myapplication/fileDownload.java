@@ -112,13 +112,13 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             BufferedReader br = new BufferedReader(isr);
             StringBuilder sb = new StringBuilder();
             String text;
-
-                while ((text = br.readLine()) != null) {
-                    System.out.println("SB "+ sb);
+            while ((text = br.readLine()) != null) {
+                    //System.out.println("SB "+ sb);
                     sb.append(text).append("\n");
             }
             System.out.println("SB2 " + sb);
-            fileText.setText(sb.toString());
+            String x = String.valueOf(sb);
+            fileText.setText(x);
 
         } catch (FileNotFoundException e) {
             e.printStackTrace();

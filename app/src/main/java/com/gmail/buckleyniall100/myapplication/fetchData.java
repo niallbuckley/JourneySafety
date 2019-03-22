@@ -20,7 +20,7 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
     private final double lat;
     private final double lon;
     String data = "";
-    String osmId = "";
+    int osmId ;
     //String address = "";
     String roadData = "";
     String maxSpeed = "";
@@ -46,8 +46,10 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
                 data = data + line;
             }
             try {
+                System.out.println(data);
                 JSONObject jsonData = new JSONObject(data);
-                osmId = (String) jsonData.get("osm_id");
+                osmId = (int) jsonData.get("osm_id");
+                System.out.println("Place ID" + osmId);
                 address = (String) jsonData.get("display_name");
                 System.out.println("ADDRESS: "+ address);
                 setAddress(address);
@@ -56,6 +58,9 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
 
             } catch (JSONException e) {
                 e.printStackTrace();
+            }
+            catch ( java.lang.RuntimeException e) {
+                System.out.println("Failed");
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();
@@ -80,7 +85,7 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
         MapsActivity.data.setText(this.maxSpeed);
     }
 
-    private String getSpeedLimit(String ID){
+    private String getSpeedLimit(int ID){
         try {
             URL roadURL = new URL("https://www.openstreetmap.org/api/0.6/way/" + ID);
             HttpURLConnection httpURLConnection = (HttpURLConnection) roadURL.openConnection();
