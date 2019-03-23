@@ -1,11 +1,13 @@
 package com.gmail.buckleyniall100.myapplication;
 
 import android.content.Intent;
+import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,6 +27,9 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
     private JSONObject jsonObj;
     private String FILE_NAME;
     private TextView fileText;
+    private String outputString;
+    private ImageView badImage;
+    private ImageView goodImage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,11 +38,29 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
 
         TextView scoreText = findViewById(R.id.text1);
         TextView predictText = findViewById(R.id.text2);
+
+        badImage = (ImageView) findViewById(R.id.imageView2);
+        badImage.setVisibility(View.INVISIBLE);
+        goodImage = (ImageView) findViewById(R.id.imageView1);
+        goodImage.setVisibility(View.INVISIBLE);
         String predictedScore = getIntent().getStringExtra("predictedScore");
         String journeyScore = getIntent().getStringExtra("journeyScore");
+        //String predictedScore = "7";
+        //String journeyScore = "6";
+        int x = Integer.valueOf(journeyScore);
+        double y = Double.valueOf(predictedScore);
+        int predScore = (int) y;
 
-        scoreText.append(journeyScore);
-        predictText.append(predictedScore);
+        if ((Integer.valueOf(journeyScore) >= predScore) && (Integer.valueOf(journeyScore) > 1)){
+            outputString= "Well done, ";
+            goodImage.setVisibility(View.VISIBLE);
+        }
+        else{
+            outputString = "Unfortunately, ";
+            badImage.setVisibility(View.VISIBLE);
+        }
+        scoreText.setText(scoreText.getText() + journeyScore);
+        predictText.append(String.valueOf(predScore));
 
         Button saveButton = (Button) findViewById(R.id.save_button);
         saveButton.setOnClickListener((View.OnClickListener) fileDownload.this);

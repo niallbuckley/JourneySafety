@@ -71,6 +71,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int ticked;
     private int hoursSlept;
     private int hoursSinceSlept;
+    predictScore ps;
     //private DatabaseReference mDatabase = firebaseDatabase.getReference("users");
 
     //String email = user.getEmail();
@@ -94,7 +95,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         System.out.println("Hours Slept: " + hoursSlept);
         System.out.println("Hours since sleep: " + hoursSinceSlept);
         //double ps = new predictScore().predictScore(ticked, hoursSlept, hoursSinceSlept);
-        predictScore ps = new predictScore(1, 2, 3);
+        ps = new predictScore(8, 8, 1);
         ps.setUpData();
 
         System.out.println("User ID: " + user.getUid());
@@ -207,11 +208,12 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private void journeyFinished(JSONObject p, int allScore) {
         System.out.println("YELLOWW "  + p);
+        System.out.println("Predict Score " + ps.getPredictedData());
         System.out.println("Predict Score " + predictedData.getText().toString());
         Intent intent = new Intent(MapsActivity.this, fileDownload.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         intent.putExtra("journeyDetails", p.toString());
-        intent.putExtra("predictedScore", predictedData.getText().toString());
+        intent.putExtra("predictedScore", String.valueOf(ps.getPredictedData()));
         intent.putExtra("journeyScore", String.valueOf(allScore));
         startActivity(intent);
     }

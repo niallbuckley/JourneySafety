@@ -105,5 +105,9 @@ public class predictScore {
         //MapsActivity.predictedData.setText((int) predicted);
         return predicted;
     }
+
+    public double getPredictedData(){
+        return this.predicted;
+    }
 }
 

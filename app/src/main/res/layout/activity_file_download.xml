@@ -5,22 +5,47 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
+    <ImageView
+        android:id="@+id/imageView1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/icons8_checkmark"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"/>
+
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/icons8_delete"
+        android:layout_centerHorizontal="true"
+        android:adjustViewBounds="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="20dp"/>
+
     <TextView
         android:id="@+id/text1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize = "30sp"
-        android:text="Your Score: "/>
+        android:text="You earned a score of: "
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/imageView1"
+        android:layout_marginTop="20dp" />
 
     <TextView
         android:id="@+id/text2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textSize = "30sp"
-        android:text="Predicted Score: "
-        android:layout_below="@+id/text1"/>
+        android:text="Your predicted score was: "
+        android:layout_centerHorizontal="true"
+        android:layout_below="@+id/text1"
+        android:layout_marginBottom="20dp"/>
 
-    <TextView
+
+   <TextView
         android:id="@+id/predicted_score"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +53,6 @@
         android:textSize="20dip"
         android:textStyle="bold"
         android:typeface="sans"
-        android:hint="Predicted score"
         android:layout_below="@+id/text2"/>
 
     <Button
