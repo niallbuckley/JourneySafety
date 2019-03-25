@@ -42,4 +42,6 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="start_fragment_info">Tap Start before you begin driving!</string>
+    <string name="app_info_title">About The Project</string>
+    <string name="app_info">As technology grows and becomes more prevalent in our everyday lives, we are finding more and more ways to introduce technology to aid in practical everyday situations. Driving is an activity most people engage in daily and is the most likely cause of death for people between the ages of 18-24. It seems that people don’t take necessary precautions when it comes to driving. This project provides a practical technological solution to the issue of unsafe/ dangerous driving.</string>
 </resources>

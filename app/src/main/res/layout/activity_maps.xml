@@ -16,16 +16,17 @@ android:layout_height="fill_parent" >
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:layout_marginTop="5dip"
         android:layout_marginRight="5dip"
         android:textColor="#040404"
-        android:textSize="30dip"
+        android:textSize="25dip"
         android:textStyle="bold"
         android:typeface="sans"
+        android:gravity="center"
         android:background="@drawable/speedlimit_design"/>
 
     <TextView
@@ -37,6 +38,17 @@ android:layout_height="fill_parent" >
         android:textStyle="bold"
         android:typeface="sans"
         android:text="Your Predicted Score: "/>
+
+    <TextView
+        android:id="@+id/weather"
+        android:layout_below="@+id/predicted_score"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="#040404"
+        android:textSize="20dip"
+        android:textStyle="bold"
+        android:typeface="sans"
+        android:text="Weather: "/>
 
     <Button
         android:id="@+id/finish"

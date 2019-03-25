@@ -30,6 +30,7 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
     private String outputString;
     private ImageView badImage;
     private ImageView goodImage;
+    private Button returnButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -84,10 +85,20 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
                 try {
                     save();
                     load();
+                    homeButton();
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
+            /*case R.id.return_button:
+                Intent intent = new Intent(this, MainActivity.class);
+                startActivity(intent);*/
         }
+    }
+
+    private void homeButton() {
+        returnButton = (Button) findViewById(R.id.return_button);
+        returnButton.setVisibility(View.VISIBLE);
+
     }
 
 
@@ -98,7 +109,7 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
         try {
             fos = openFileOutput(FILE_NAME, MODE_PRIVATE);
             //On date d/m/y After x sleep and y hours between sleep you made l errors:
-            for (int i = 1; i < jsonObj.getJSONArray("Error").length(); i++) {
+            for (int i = 0; i < jsonObj.getJSONArray("Error").length(); i++) {
                 String strJson = Integer.toString(i+1) + ". " + array.getString(i) + "\n";
 
                 System.out.println(array.getString(i));

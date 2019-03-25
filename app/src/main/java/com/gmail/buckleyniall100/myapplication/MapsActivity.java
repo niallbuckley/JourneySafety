@@ -60,6 +60,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     String charset = "UTF-8";
     public static TextView data;
     public static TextView predictedData;
+    public static TextView weatherData;
     public static Button startButton;
     public static Button finishButton;
     boolean startButtonPressed = false;
@@ -71,6 +72,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private int ticked;
     private int hoursSlept;
     private int hoursSinceSlept;
+    private String weather;
     predictScore ps;
     //private DatabaseReference mDatabase = firebaseDatabase.getReference("users");
 
@@ -84,13 +86,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         setContentView(R.layout.activity_maps);
 
         predictedData = (TextView) findViewById(R.id.predicted_score);
+        weatherData = (TextView) findViewById(R.id.weather);
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             ticked = extras.getInt("numTicked");
             hoursSlept = extras.getInt("hoursSlept");
             hoursSinceSlept = extras.getInt("hoursSinceSlept");
-            //The key argument here must match that used in the other activity
+            weather = extras.getString("weather");
         }
+        weatherData.append(weather);
         System.out.println("Ticked: " + ticked);
         System.out.println("Hours Slept: " + hoursSlept);
         System.out.println("Hours since sleep: " + hoursSinceSlept);

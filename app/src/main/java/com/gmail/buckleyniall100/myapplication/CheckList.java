@@ -36,6 +36,7 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
     private int ticked;
     private int intHoursSinceSlept;
     private int intHoursSlept;
+    FetchWeather weather;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,7 +46,7 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
         Button continueButton = (Button) findViewById(R.id.the_button);
         continueButton.setOnClickListener(CheckList.this);
 
-        FetchWeather weather = new FetchWeather();
+        weather = new FetchWeather();
         weather.execute();
         checkBox1 = (CheckBox) findViewById(R.id.check_box1);
         checkBox2 = (CheckBox) findViewById(R.id.check_box2);
@@ -72,6 +73,7 @@ public class CheckList extends AppCompatActivity implements View.OnClickListener
                 extras.putInt("numTicked",ticked);
                 extras.putInt("hoursSlept", intHoursSlept);
                 extras.putInt("hoursSinceSlept", intHoursSinceSlept);
+                extras.putString("weather", weather.getWeather());
                 i.putExtras(extras);
                 startActivity(i);
                 //startActivity(new Intent(this, SleepTime.class));

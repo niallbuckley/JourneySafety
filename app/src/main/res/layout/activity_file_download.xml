@@ -62,4 +62,12 @@
         android:text="Save Journey Details"
         android:layout_alignParentBottom="true" />
 
+    <Button
+        android:id="@+id/return_button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Return Home"
+        android:layout_alignParentBottom="true"
+        android:visibility="invisible"/>
+
 </RelativeLayout>

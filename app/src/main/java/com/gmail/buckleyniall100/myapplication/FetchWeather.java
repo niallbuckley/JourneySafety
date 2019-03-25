@@ -20,7 +20,7 @@ public class FetchWeather extends AsyncTask<Void, Void, Void> {
     @Override
     protected Void doInBackground(Void... voids) {
         try{
-            URL myURL = new URL("http://api.openweathermap.org/data/2.5/weather?q=galway,Ireland&APPID=26431758f2fd746870620e61b6310840");
+            URL myURL = new URL("http://api.openweathermap.org/data/2.5/weather?q=cork,Ireland&APPID=26431758f2fd746870620e61b6310840");
             HttpURLConnection httpURLConnection = (HttpURLConnection) myURL.openConnection();
             httpURLConnection.addRequestProperty("User-Agent", "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.11 (KHTML, like Gecko) Chrome/23.0.1271.95 Safari/537.11");
             //int status = httpURLConnection.getResponseCode();
@@ -53,4 +53,7 @@ public class FetchWeather extends AsyncTask<Void, Void, Void> {
         StartJourney.setWeather(weather);
     }
 
+    public String getWeather() {
+        return this.weather;
+    }
 }
