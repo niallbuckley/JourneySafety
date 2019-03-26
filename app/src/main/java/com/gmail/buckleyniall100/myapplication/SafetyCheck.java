@@ -48,7 +48,16 @@ public class SafetyCheck {
         System.out.println("prev1 "+ previous);
         System.out.println("prev2 " + fetchData.getAddress()+ " ---- Reason: Speeding");
         //may not be necessary.
-        if (maxSpeed > -1) {
+        if(isJunction.getJunction()){
+            System.out.println("OMG!!");
+            if (previous == null || !previous.equals(fetchData.getAddress() + " ---- Reason: Not slowing for intersection")) {
+                System.out.println("ok Junc");
+                if(fetchData.getAddress() != null){
+                    jsonFile.writeToJson(fetchData.getAddress() + " ---- Reason: Not slowing for intersection");
+                }
+            }
+        }
+        else if (maxSpeed > -1) {
                 if (previous == null || !previous.equals(fetchData.getAddress() + " ---- Reason: Speeding")) {
                     System.out.println("ok");
                     if(fetchData.getAddress() != null){

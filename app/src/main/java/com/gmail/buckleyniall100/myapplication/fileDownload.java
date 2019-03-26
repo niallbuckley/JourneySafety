@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.media.Image;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -22,7 +23,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-public class fileDownload extends AppCompatActivity implements View.OnClickListener {
+public class fileDownload extends AppCompatActivity{
 
     private JSONObject jsonObj;
     private String FILE_NAME;
@@ -31,6 +32,8 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
     private ImageView badImage;
     private ImageView goodImage;
     private Button returnButton;
+
+    private Button saveButton;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,8 +66,11 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
         scoreText.setText(scoreText.getText() + journeyScore);
         predictText.append(String.valueOf(predScore));
 
-        Button saveButton = (Button) findViewById(R.id.save_button);
-        saveButton.setOnClickListener((View.OnClickListener) fileDownload.this);
+        saveButton = (Button) findViewById(R.id.save_button);
+        //saveButton.setOnClickListener((View.OnClickListener) fileDownload.this);
+
+        returnButton = (Button) findViewById(R.id.return_button);
+        returnButton.setVisibility(View.GONE);
         try {
             jsonObj = new JSONObject(getIntent().getStringExtra("journeyDetails"));
         } catch (JSONException e) {
@@ -78,29 +84,18 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
         }
     }
 
-    @Override
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.save_button:
-                try {
-                    save();
-                    load();
-                    homeButton();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            /*case R.id.return_button:
-                Intent intent = new Intent(this, MainActivity.class);
-                startActivity(intent);*/
-        }
-    }
-
-    private void homeButton() {
-        returnButton = (Button) findViewById(R.id.return_button);
+    public void saveButtonClicked(View v) throws JSONException{
+        saveButton.setVisibility(View.INVISIBLE);
+        //startButtonPressed = true;
+        save();
+        load();
         returnButton.setVisibility(View.VISIBLE);
-
     }
 
+    public void homeButtonClicked(View v) throws JSONException{
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+    }
 
     public void save() throws JSONException {
         final String FILE_NAME = "Mistakes: " + jsonObj.get("Date/ Time") + ".txt";
@@ -137,8 +132,10 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
     }
 
     public void load() throws JSONException {
-        FileInputStream fis = null;
+        System.out.println("Hello");
         TextView fileText = findViewById(R.id.predicted_score);
+        fileText.setMovementMethod(new ScrollingMovementMethod());
+        FileInputStream fis = null;
         final String FILE_NAME = "Mistakes: " + jsonObj.get("Date/ Time") + ".txt";
         try {
             fis = openFileInput(FILE_NAME);
@@ -153,7 +150,6 @@ public class fileDownload extends AppCompatActivity implements View.OnClickListe
             System.out.println("SB2 " + sb);
             String x = String.valueOf(sb);
             fileText.setText(x);
-
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {

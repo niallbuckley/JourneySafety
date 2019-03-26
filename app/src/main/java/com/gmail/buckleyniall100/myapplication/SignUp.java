@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -18,6 +19,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
     Button button;
     EditText email, password1, password2;
     private FirebaseAuth mAuth;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
+
+        progressBar = (ProgressBar) findViewById(R.id.login_progress);
     }
 
     @Override
@@ -68,17 +72,20 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
             password1.requestFocus();
             return;
         }
-        if(password != confirmPassword){
+        if(!password.equals(confirmPassword)){
             password1.setError("Passwords don't match!");
             password2.setError("Passwords don't match!");
             return;
         }
+
+        progressBar.setVisibility(View.VISIBLE);
         mAuth.createUserWithEmailAndPassword(username, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if(task.isSuccessful()){
                     System.out.println("good lad");
-                    Intent intent = new Intent(SignUp.this, MainMenu.class);
+                    Intent intent = new Intent(SignUp.this, MainActivity.class);
                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                     startActivity(intent);
                     finish();

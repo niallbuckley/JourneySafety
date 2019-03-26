@@ -8,6 +8,7 @@ import android.util.Patterns;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,7 +20,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
     Button signInButton, signUpButton;
     EditText email, password;
     FirebaseUser currentFirebaseUser = FirebaseAuth.getInstance().getCurrentUser() ;
-
+    ProgressBar progressBar;
 
     private FirebaseAuth mAuth;
     @Override
@@ -35,6 +36,8 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         signInButton.setOnClickListener(SignIn.this);
         signUpButton = (Button) findViewById(R.id.sign_up_button);
         signUpButton.setOnClickListener(SignIn.this);
+
+        progressBar = (ProgressBar) findViewById(R.id.login_progress);
 
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
@@ -77,12 +80,15 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             return;
         }
 
+        progressBar.setVisibility(View.VISIBLE);
+
         mAuth.signInWithEmailAndPassword(username, pswrd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
             @Override
             public void onComplete(@NonNull Task<AuthResult> task) {
+                progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()){
                      System.out.println("Success!!");
-                     Intent intent = new Intent(SignIn.this, MainMenu.class);
+                     Intent intent = new Intent(SignIn.this, MainActivity.class);
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      startActivity(intent);
                      finish();
