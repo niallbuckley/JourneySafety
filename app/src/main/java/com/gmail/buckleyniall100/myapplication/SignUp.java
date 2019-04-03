@@ -32,6 +32,8 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         button = (Button) findViewById(R.id.sign_up_button);
         button.setOnClickListener(SignUp.this);
 
+        findViewById(R.id.textLogin).setOnClickListener(this);
+
         email = findViewById(R.id.email);
         password1 = findViewById(R.id.password1);
         password2 = findViewById(R.id.password2);
@@ -44,6 +46,9 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
         switch (v.getId()) {
             case R.id.sign_up_button:
                 registerUser();
+            case R.id.textLogin:
+                startActivity(new Intent(this, SignIn.class));
+                break;
         }
     }
 
@@ -91,7 +96,7 @@ public class SignUp extends AppCompatActivity implements View.OnClickListener {
                     finish();
 
                 }
-                //else{} email alreay taken (in video)
+                //else{} email alreay taken
             }
         });
     }

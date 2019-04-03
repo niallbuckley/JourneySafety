@@ -127,6 +127,17 @@ public class fetchData extends AsyncTask<Void, Void, Void> {
                 System.out.println(m2.group());
                 maxSpeed = m2.group();
                 maxSpeed = maxSpeed.replaceAll("^\"|\"$", "");
+                System.out.println("This is the max speed1 "+maxSpeed);
+                if (Integer.parseInt(maxSpeed) == 32){
+                    maxSpeed = "50";
+                }
+                else if(Integer.parseInt(maxSpeed) == 50){
+                    maxSpeed = "80";
+                    System.out.println("This is the max speed2 "+maxSpeed);
+                }
+                else if(Integer.parseInt(maxSpeed) == 60){
+                    maxSpeed = "100";
+                }
             }
         } catch (MalformedURLException e) {
             e.printStackTrace();

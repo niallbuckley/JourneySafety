@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -34,8 +35,9 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
         //Intialization Button
         signInButton = (Button) findViewById(R.id.sign_in_button);
         signInButton.setOnClickListener(SignIn.this);
-        signUpButton = (Button) findViewById(R.id.sign_up_button);
-        signUpButton.setOnClickListener(SignIn.this);
+        //signUpButton = (Button) findViewById(R.id.sign_up_button);
+        //signUpButton.setOnClickListener(SignIn.this);
+        findViewById(R.id.textSignUp).setOnClickListener(this);
 
         progressBar = (ProgressBar) findViewById(R.id.login_progress);
 
@@ -49,7 +51,7 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             case R.id.sign_in_button:
                 userSignIn();
                 break;
-            case R.id.sign_up_button:
+            case R.id.textSignUp:
                 startActivity(new Intent(this, SignUp.class));
                 break;
         }
@@ -87,7 +89,6 @@ public class SignIn extends AppCompatActivity implements View.OnClickListener {
             public void onComplete(@NonNull Task<AuthResult> task) {
                 progressBar.setVisibility(View.GONE);
                 if (task.isSuccessful()){
-                     System.out.println("Success!!");
                      Intent intent = new Intent(SignIn.this, MainActivity.class);
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
                      startActivity(intent);

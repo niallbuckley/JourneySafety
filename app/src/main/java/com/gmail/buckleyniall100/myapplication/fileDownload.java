@@ -47,10 +47,10 @@ public class fileDownload extends AppCompatActivity{
         badImage.setVisibility(View.INVISIBLE);
         goodImage = (ImageView) findViewById(R.id.imageView1);
         goodImage.setVisibility(View.INVISIBLE);
-        String predictedScore = getIntent().getStringExtra("predictedScore");
-        String journeyScore = getIntent().getStringExtra("journeyScore");
-        //String predictedScore = "7";
-        //String journeyScore = "6";
+        //String predictedScore = getIntent().getStringExtra("predictedScore");
+        //String journeyScore = getIntent().getStringExtra("journeyScore");
+        String predictedScore = "7";
+        String journeyScore = "8";
         int x = Integer.valueOf(journeyScore);
         double y = Double.valueOf(predictedScore);
         int predScore = (int) y;

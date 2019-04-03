@@ -95,11 +95,11 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             weather = extras.getString("weather");
         }
         weatherData.append(weather);
-        System.out.println("Ticked: " + ticked);
         System.out.println("Hours Slept: " + hoursSlept);
         System.out.println("Hours since sleep: " + hoursSinceSlept);
+        System.out.println("Ticked: " + ticked);
         //double ps = new predictScore().predictScore(ticked, hoursSlept, hoursSinceSlept);
-        ps = new predictScore(8, 8, 1);
+        ps = new predictScore(ticked, hoursSlept, hoursSinceSlept);
         ps.setUpData();
 
         System.out.println("User ID: " + user.getUid());
@@ -234,39 +234,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     private int calculateScore(int errors, Date startDate, Date endDate){
-        if(errors == 0){
-            return 10;
-        }
-        double diffInMins = (double)( (endDate.getTime() - startDate.getTime())
+        if(errors == 0){ return 10; }
+        double journeyTimeInMins = (double)( (endDate.getTime() - startDate.getTime())
                 / (1000 * 60) );
-        if( errors / (diffInMins/60) > 0 &&  errors / ((diffInMins/60)) <= 1 ){
-            return 9;
-        }
-        else if ( errors / (diffInMins/60) > 1 &&  errors / ((diffInMins/60)) <= 2 ){
-            return 8;
-        }
-        else if ( errors / (diffInMins/60) > 2 &&  errors / ((diffInMins/60)) <= 3 ){
-            return 7;
-        }
-        else if ( errors / (diffInMins/60) > 3 &&  errors / ((diffInMins/60)) <= 4 ){
-            return 6;
-        }
-        else if ( errors / (diffInMins/60) > 4 &&  errors / ((diffInMins/60)) <= 5 ){
-            return 5;
-        }
-        else if ( errors / (diffInMins/60) > 5 &&  errors / ((diffInMins/60)) <= 6 ){
-            return 4;
-        }
-        else if ( errors / (diffInMins/60) > 6 &&  errors / ((diffInMins/60)) <= 7 ){
-            return 3;
-        }
-        else if ( errors / (diffInMins/60) > 7 &&  errors / ((diffInMins/60)) <= 8 ){
-            return 2;
-        }
-        else if (((diffInMins/60)) <= 7 ){
-            return 1;
-        }
-        return 0;
+        if( errors / (journeyTimeInMins/60) > 0 &&  errors / ((journeyTimeInMins/60)) <= 1 ){
+            return 9; }
+        else if ( errors / (journeyTimeInMins/60) > 1 &&  errors / ((journeyTimeInMins/60)) <= 2 ){
+            return 8; }
+        else if ( errors / (journeyTimeInMins/60) > 2 &&  errors / ((journeyTimeInMins/60)) <= 3 ){
+            return 7; }
+        else if ( errors / (journeyTimeInMins/60) > 3 &&  errors / ((journeyTimeInMins/60)) <= 4 ){
+            return 6; }
+        else if ( errors / (journeyTimeInMins/60) > 4 &&  errors / ((journeyTimeInMins/60)) <= 5 ){
+            return 5; }
+        else if ( errors / (journeyTimeInMins/60) > 5 &&  errors / ((journeyTimeInMins/60)) <= 6 ){
+            return 4; }
+        else if ( errors / (journeyTimeInMins/60) > 6 &&  errors / ((journeyTimeInMins/60)) <= 7 ){
+            return 3; }
+        else if ( errors / (journeyTimeInMins/60) > 7 &&  errors / ((journeyTimeInMins/60)) <= 8 ){
+            return 2;}
+        else if ( errors / (journeyTimeInMins/60) > 8 &&  errors / ((journeyTimeInMins/60)) <= 9 ){
+            return 1; }
+        else{
+            return 0; }
     }
 
     public TextView getPredictedData(){
